@@ -11,7 +11,8 @@ const AddTaskForm: React.FC<{ addTodo: (task: string) => void }> = ({
     setTask(event.target.value);
   };
 
-  const handleAddTask = () => {
+  const handleAddTask = (event: React.FormEvent) => {
+    event.preventDefault();
     // Add your logic here to handle adding the task
     console.log("Task:", task);
     addTodo(task);
@@ -20,18 +21,20 @@ const AddTaskForm: React.FC<{ addTodo: (task: string) => void }> = ({
 
   return (
     <div className="flex w-full p-5">
-      <input
-        className="w-full h-[50px] rounded-l-2xl text-[#1b1b3a]"
-        type="text"
-        value={task}
-        onChange={handleInputChange}
-      />
-      <button
-        className="bg-teal-500 h-[50px] w-20 rounded-r-2xl"
-        onClick={handleAddTask}
-      >
-        +
-      </button>
+      <form onSubmit={handleAddTask} className="flex w-full">
+        <input
+          className="w-full h-[50px] rounded-l-2xl text-[#1b1b3a]"
+          type="text"
+          value={task}
+          onChange={handleInputChange}
+        />
+        <button
+          className="bg-teal-500 h-[50px] w-20 rounded-r-2xl"
+          onClick={handleAddTask}
+        >
+          +
+        </button>
+      </form>
     </div>
   );
 };
