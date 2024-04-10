@@ -1,13 +1,14 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 import { Todo } from "@/types";
 
-const TodoElement: React.FC<{ onClick: () => void; todo: Todo }> = ({
-  onClick,
-  todo: { task, completed },
-}) => {
+const TodoElement = forwardRef<
+  HTMLDivElement,
+  { onClick: () => void; todo: Todo }
+>(({ onClick, todo: { task, completed } }, ref) => {
   return (
     <div
+      ref={ref}
       onClick={onClick}
       className="flex items-center justify-between w-full p-4 my-2 bg-gradient-to-r from-purple-900 to-purple-400 rounded-lg"
     >
@@ -24,6 +25,6 @@ const TodoElement: React.FC<{ onClick: () => void; todo: Todo }> = ({
       </div>
     </div>
   );
-};
+});
 
 export default TodoElement;

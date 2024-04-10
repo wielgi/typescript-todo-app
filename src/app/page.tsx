@@ -6,6 +6,7 @@ import AddTaskForm from "@/components/AddTaskForm";
 import TodoElement from "@/components/Todo";
 import Image from "next/image";
 import { Todo } from "@/types";
+import FlipMove from "react-flip-move";
 
 export default function Home() {
   const [todos, setTodos] = useState<Todo[]>([
@@ -51,17 +52,19 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-10 transition ease-in-out">
       <AddTaskForm addTodo={addTodo} />
-      {todos
-        .sort((a, b) =>
-          a.completed === b.completed ? b.id - a.id : a.completed ? 1 : -1
-        )
-        .map((todo) => (
-          <TodoElement
-            onClick={() => changeTodo(todo.id)}
-            key={todo.id}
-            todo={todo}
-          />
-        ))}
+      <FlipMove className="w-full">
+        {todos
+          .sort((a, b) =>
+            a.completed === b.completed ? b.id - a.id : a.completed ? 1 : -1
+          )
+          .map((todo) => (
+            <TodoElement
+              onClick={() => changeTodo(todo.id)}
+              key={todo.id}
+              todo={todo}
+            />
+          ))}
+      </FlipMove>
     </main>
   );
 }
