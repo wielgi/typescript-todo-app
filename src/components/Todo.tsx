@@ -27,4 +27,6 @@ const TodoElement = forwardRef<
   );
 });
 
+TodoElement.displayName = "TodoElement";
+
 export default TodoElement;
