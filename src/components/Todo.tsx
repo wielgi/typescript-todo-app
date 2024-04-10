@@ -2,11 +2,15 @@ import React from "react";
 
 import { Todo } from "@/types";
 
-const TodoElement: React.FC<{ todo: Todo }> = ({
+const TodoElement: React.FC<{ onClick: () => void; todo: Todo }> = ({
+  onClick,
   todo: { task, completed },
 }) => {
   return (
-    <div className="flex items-center justify-between w-full p-4 my-2 bg-gradient-to-r from-purple-900 to-purple-400 rounded-lg">
+    <div
+      onClick={onClick}
+      className="flex items-center justify-between w-full p-4 my-2 bg-gradient-to-r from-purple-900 to-purple-400 rounded-lg"
+    >
       <div className="flex items-center">
         <input
           type="checkbox"
