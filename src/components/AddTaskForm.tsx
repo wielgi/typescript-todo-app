@@ -13,17 +13,25 @@ const AddTaskForm: React.FC<{ addTodo: (task: string) => void }> = ({
 
   const handleAddTask = (event: React.FormEvent) => {
     event.preventDefault();
+    // check if the task is empty
+    if (!task.trim()) {
+      return;
+    }
     // Add your logic here to handle adding the task
     console.log("Task:", task);
     addTodo(task);
     setTask("");
+
+    // focus on input after adding task
+    const input = document.querySelector(".newTaskForm") as HTMLInputElement;
+    input?.focus();
   };
 
   return (
     <div className="flex w-full p-5">
       <form onSubmit={handleAddTask} className="flex w-full">
         <input
-          className="w-full h-[50px] rounded-l-2xl text-[#1b1b3a]"
+          className="newTaskForm w-full h-[50px] rounded-l-2xl text-[#1b1b3a]"
           type="text"
           value={task}
           onChange={handleInputChange}
