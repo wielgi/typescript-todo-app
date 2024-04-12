@@ -28,6 +28,11 @@ export default function Home() {
   ]);
 
   const addTodo = (task: string) => {
+    //check if task already exists
+    if (todos.some((todo) => todo.task === task)) {
+      return;
+    }
+
     const newTodo: Todo = {
       id: todos.length + 1,
       task,
